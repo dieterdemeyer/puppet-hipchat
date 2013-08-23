@@ -1,9 +1,9 @@
 class puppet_hipchat (
-  $api_key,
+  $api_token,
   $room,
-  $notify_color = 'red',
-  $notify_room  = false,
-  $statuses     = [ 'failed' ],
+  $from = 'Puppet',
+  $notify = '1',
+  $statuses     = [ 'failed', 'changed' ],
   $config_file  = '/etc/puppet/hipchat.yaml',
 ){
 
@@ -13,7 +13,6 @@ class puppet_hipchat (
     group   => 'puppet',
     mode    => '0440',
     content => template('puppet_hipchat/hipchat.yaml.erb'),
-
   }
 
 }

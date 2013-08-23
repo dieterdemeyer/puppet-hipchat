@@ -1,7 +1,9 @@
 ---
-:hipchat_api: 'apikey'
-:hipchat_room: 'roomname'
-:hipchat_notify_color: 'red'
-:hipchat_notify: 'false'
+:hipchat_api_token: 'api_token'
+:hipchat_room: 'room_name'
+:hipchat_from: 'Puppet'
+:hipchat_notify: '1'
 :hipchat_statuses:
   - failed
+  - changed
+:foreman_api_host: 'http://foreman.intra.cegeka.be'

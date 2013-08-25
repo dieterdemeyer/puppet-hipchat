@@ -48,10 +48,10 @@ Puppet::Reports.register_report(:hipchat) do
     if (get_statuses(HIPCHAT_STATUSES).include?(self.status) || get_statuses(HIPCHAT_STATUSES).include?('all')) && !disabled
       Puppet.debug "Sending status for #{self.host} to Hipchat channel #{HIPCHAT_ROOM}"
 
-      msg = "Puppet run for #{self.host} #{self.status} at #{Time.now.asctime}"
+      msg = "Puppet run executed on #{self.host} with status #{self.status} at #{Time.now.asctime}"
 
       if FOREMAN_API_HOST != ''
-        uri = URI.parse('http://%s/api/hosts/%s/reports/last' % [ FOREMAN_API_HOST, self.host ] )
+        uri = URI.parse('%s/api/hosts/%s/reports/last' % [ FOREMAN_API_HOST, self.host ] )
         http = Net::HTTP.new(uri.host, uri.port)
         http.use_ssl = true
         http.verify_mode = OpenSSL::SSL::VERIFY_NONE
@@ -61,7 +61,7 @@ Puppet::Reports.register_report(:hipchat) do
 
         json = JSON.parse(@data)
         reportid = json['report']['id']
-        msg = "Puppet run for <a href=\"http://foreman/hosts/reports/#{reportid}\">#{self.host}</a> #{self.status} at #{Time.now.asctime}"
+        msg = "Puppet run executed on <a href=\"#{FOREMAN_API_HOST}/hosts/#{self.host}\">#{self.host}</a> with status <a href=\"#{FOREMAN_API_HOST}/reports/#{reportid}\">#{self.status}</a> at #{Time.now.asctime}"
       end
 
       color = case self.status

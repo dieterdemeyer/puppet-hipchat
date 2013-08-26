@@ -64,7 +64,6 @@ Puppet::Reports.register_report(:hipchat) do
 
       client = HipChat::Client.new(HIPCHAT_API_TOKEN)
       client[HIPCHAT_ROOM].send(HIPCHAT_FROM, msg, :notify => HIPCHAT_NOTIFY, :color => color)
-
     end
   end
 

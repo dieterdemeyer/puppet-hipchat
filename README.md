@@ -14,18 +14,22 @@ Requirements
 Installation & Usage
 --------------------
 
-1.  Install puppet-hipchat as a module in your Puppet master's module
+1.  Install the `hipchat` gem on your Puppet master
+
+        $ sudo gem install hipchat
+
+2.  Install puppet-hipchat as a module in your Puppet master's module
     path.
 
-2.  Create a HipChat API key [here](https://www.hipchat.com/groups/api)
+3.  Create a HipChat API key [here](https://www.hipchat.com/groups/api)
     with a type of Admin.  Record the API key that is generated.
 
-3.  Update the `hipchat_api_token` and `hipchat_room` variables in the `hipchat.yaml` file with
+4.  Update the `hipchat_api_token` and `hipchat_room` variables in the `hipchat.yaml` file with
     your hipchat connection details and copy the file to `/etc/puppet/` or for puppet enterpise '/etc/puppetlabs/puppet'.
     An option to notify  users in the room `hipchat_notify` defaults to `0`. The `hipchat_statuses` should be an array of statuses to send notifications
     for and defaults to `'failed'`. Specify `'all'` to receive notifications from all Puppet runs. An example file is included.
 
-4.  Enable pluginsync and reports on your master and clients in `puppet.conf`
+5.  Enable pluginsync and reports on your master and clients in `puppet.conf`
 
         [master]
           report = true
@@ -35,9 +39,9 @@ Installation & Usage
           report = true
           pluginsync = true
 
-5.  Run the Puppet client and sync the report as a plugin
+6.  Run the Puppet client and sync the report as a plugin
 
-6.  To temporarially disable HipChat notifications add a file named 'hipchat_disabled' in the same path as hipchat.yaml.
+7.  To temporarially disable HipChat notifications add a file named 'hipchat_disabled' in the same path as hipchat.yaml.
 	(Removing it will re-enable notifications)
 
 		$ touch /etc/puppet/hipchat_disabled

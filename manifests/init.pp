@@ -1,4 +1,4 @@
-class puppet_hipchat (
+class hipchat (
   $api_token,
   $room,
   $from = 'Puppet',
